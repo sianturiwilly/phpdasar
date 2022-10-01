@@ -10,7 +10,7 @@
 $hari = array("Senin", "Selasa", "Rabu");
 // Cara baru
 $bulan = ["Januari", "Februari", "Maret"];
-$arr1 = [123, "tulisan", false];
+$arr = [123, "tulisan", false];
 
 // Menampilkan Array
 // var_dump / print_r()
@@ -20,7 +20,7 @@ $arr1 = [123, "tulisan", false];
 // echo "<br>";
 
 // Menampilkan 1 elemen pada Array
-// echo $arr1[0];
+// echo $arr[0];
 // echo "<br>";
 // echo $bulan[1];
 
