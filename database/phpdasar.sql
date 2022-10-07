@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2022 at 05:27 AM
+-- Generation Time: Oct 07, 2022 at 08:18 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -46,7 +46,12 @@ INSERT INTO `mahasiswa` (`id`, `nama`, `nim`, `email`, `jurusan`, `gambar`) VALU
 (3, 'Willi', '55411549', 'willymusermufc@hotmail.com', 'Teknik Informatika', 'willi1.jpg'),
 (4, 'Nike Ratnadilla', '74452033', 'nike1975@gmail.com', 'Psikologi', '294121575_117873404309820_8737278965127091866_n.jpg'),
 (5, 'Nike Ardilla', '54029399', 'nikeardilla75@gmail.com', 'Hukum', 'gadis_ayu.jpg'),
-(6, 'Harry Kane', '34002877', 'harrykane@gmail.com', 'Teknik Elektro', '36002911_10155277558837447_5597773740373966848_n.jpg');
+(6, 'Harry Kane', '34002877', 'harrykane@gmail.com', 'Teknik Elektro', '36002911_10155277558837447_5597773740373966848_n.jpg'),
+(10, 'Cristiano Ronaldo', '5432033', 'cristianoronaldo@gmail.com', 'Olahraga', 'Cristiano_Ronaldo_Portugal.jpg'),
+(11, 'Mason Mount', '92209334', 'masonmount@yahoo.com', 'Teknik Mesin', '309306247_10158423814552447_8006655480584783785_n.jpg'),
+(12, 'Prajudi William Chrisdeardo', '55411550', 'sianturiwilly374@yahoo.com', 'Teknik Informatika', 'willi.jpg'),
+(13, 'Harry Kane England', '90112544', 'kane1993@yahoo.com', 'Teknik Industri', '309255147_10158423890627447_1902815608765748466_n.jpg'),
+(14, 'Jude Bellingham', '2993488', 'judebellingham@gmail.com', 'Sastra Inggris', '309159089_10158423932692447_4160728332740279410_n.jpg');
 
 --
 -- Indexes for dumped tables
@@ -66,7 +71,7 @@ ALTER TABLE `mahasiswa`
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
