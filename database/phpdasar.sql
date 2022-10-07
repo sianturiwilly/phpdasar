@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2022 at 06:08 PM
+-- Generation Time: Oct 06, 2022 at 07:31 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -42,7 +42,7 @@ CREATE TABLE `mahasiswa` (
 
 INSERT INTO `mahasiswa` (`id`, `nama`, `nim`, `email`, `jurusan`, `gambar`) VALUES
 (1, 'Willi Sianturi', '92316073', 'prajudiwilliam10@gmail.com', 'Sistem Informasi', 'willi.jpg'),
-(2, 'Darwis Purba', '91078933', 'darwispurba93@gmail.com', 'Hukum', 'darwis.jpg'),
+(2, 'Darwis Purba', '91078933', 'darwispurba93@gmail.com', 'Hukum', 'Cristiano_Ronaldo_Portugal.jpg'),
 (3, 'Willi', '55411549', 'willymusermufc@hotmail.com', 'Teknik Informatika', 'willi1.jpg'),
 (4, 'Nike Ratnadilla', '74452033', 'nike1975@gmail.com', 'Psikologi', '294121575_117873404309820_8737278965127091866_n.jpg'),
 (5, 'Nike Ardilla', '54029399', 'nikeardilla75@gmail.com', 'Hukum', 'gadis_ayu.jpg'),
