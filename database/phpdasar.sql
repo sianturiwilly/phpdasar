@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2022 at 08:18 AM
+-- Generation Time: Oct 08, 2022 at 05:05 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -53,6 +53,26 @@ INSERT INTO `mahasiswa` (`id`, `nama`, `nim`, `email`, `jurusan`, `gambar`) VALU
 (13, 'Harry Kane England', '90112544', 'kane1993@yahoo.com', 'Teknik Industri', '309255147_10158423890627447_1902815608765748466_n.jpg'),
 (14, 'Jude Bellingham', '2993488', 'judebellingham@gmail.com', 'Sastra Inggris', '309159089_10158423932692447_4160728332740279410_n.jpg');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`) VALUES
+(1, 'willi', '$2y$10$JplNIeA2ltxXTTFwv61LbONkKpbakhli9rs4XLEJe4rbHvIARXeyW'),
+(2, 'admin', '$2y$10$WksQSCdjgngyOSLWEiULM.GAG//WRI896N1VxkNvDg3Pg5tLF/4Nu');
+
 --
 -- Indexes for dumped tables
 --
@@ -64,6 +84,12 @@ ALTER TABLE `mahasiswa`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -72,6 +98,12 @@ ALTER TABLE `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
