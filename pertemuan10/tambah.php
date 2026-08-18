@@ -1,24 +1,26 @@
 <?php
-// Koneksi ke DBMS
-$conn = mysqli_connect("localhost", "root", "", "phpdasar");
-
+require 'functions.php';
 // Cek apakah tombol submit sudah ditekan atau belum.
 if(isset($_POST["submit"])) {
     // var_dump($_POST);
 
-    // Ambil data dari tiap elemen data.
-    $nim = $_POST["nim"];
-    $nama = $_POST["nama"];
-    $email = $_POST["email"];
-    $jurusan = $_POST["jurusan"];
-    $gambar = $_POST["gambar"];
-
-    // query insert data
-    $query = "INSERT INTO mahasiswa VALUES ('', '$nim', '$nama', '$email', '$jurusan', '$gambar')";
-    mysqli_query($conn, $query);
-
     // Cek apakah data berhasil ditambahkan atau tidak.
-    var_dump(mysqli_affected_rows($conn));
+    // var_dump(mysqli_affected_rows($conn));
+    if(tambah($_POST) > 0) {
+        echo "
+            <script>
+                alert('Data berhasil ditambahkan!');
+                document.location.href = 'index.php'
+            </script>
+        ";
+    } else {
+        echo "
+            <script>
+                alert('Data gagal ditambahkan!');
+                document.location.href = 'index.php'
+            </script>
+        ";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -35,7 +37,7 @@ if(isset($_POST["submit"])) {
         <ul>
             <li>
                 <label for="nim">NIM : </label>
-                <input type="text" name="nim" id="nim">
+                <input type="text" name="nim" id="nim" required>
             </li>
             <li>
                 <label for="nama">Nama : </label>
