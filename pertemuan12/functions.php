@@ -34,4 +34,10 @@ function hapus($id) {
     mysqli_query($conn, "DELETE FROM mahasiswa WHERE id = $id");
     return mysqli_affected_rows($conn);
 }
+
+function cari($keyword) {
+    global $conn;
+    $query = "SELECT * FROM mahasiswa WHERE nama LIKE'%$keyword%' OR nim LIKE'%$keyword%' OR email LIKE'%$keyword%' OR jurusan LIKE'%$keyword%'";
+    return query($query);
+}
 ?>
