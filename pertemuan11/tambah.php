@@ -3,10 +3,8 @@ require 'functions.php';
 
 // Cek apakah tombol submit sudah ditekan atau belum.
 if(isset($_POST["submit"])) {
-    // var_dump($_POST);
 
     // Cek apakah data berhasil ditambahkan atau tidak.
-    // var_dump(mysqli_affected_rows($conn));
     if(tambah($_POST) > 0) {
         echo "
             <script>

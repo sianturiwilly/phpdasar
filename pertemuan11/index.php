@@ -1,20 +1,23 @@
-<?php
+<?php 
+// 1. Hubungkan ke file functions (atau koneksi database kamu)
 require 'functions.php';
+
+// 2. Ambil data dari tabel mahasiswa
 $mahasiswa = query("SELECT * FROM mahasiswa");
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Admin</title>
 </head>
 <body>
 
 <h1>Daftar Mahasiswa</h1>
 
-<table border="1" cellpadding="10" cellspacing="0">
+<a href="tambah.php">Tambah data mahasiswa</a>
+<br><br>
 
+<table border="1" cellpadding="10" cellspacing="0">
     <tr>
         <th>No.</th>
         <th>Aksi</th>
@@ -26,12 +29,12 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
     </tr>
 
     <?php $i = 1; ?>
-    <?php foreach($mahasiswa as $row) : ?>
+    <?php foreach( $mahasiswa as $row ) : ?>
     <tr>
         <td><?= $i; ?></td>
         <td>
-            <a href="ubah.php?id=<?= $row["id"]; ?>">ubah</a> |
-            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Yakin?');">hapus</a>
+            <a href="">ubah</a> |
+            <a href="">hapus</a>
         </td>
         <td><img src="img/<?= $row["gambar"]; ?>" width="50"></td>
         <td><?= $row["nim"]; ?></td>
@@ -41,6 +44,8 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
     </tr>
     <?php $i++; ?>
     <?php endforeach; ?>
+
+</table>
 
 </body>
 </html>
