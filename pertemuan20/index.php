@@ -18,32 +18,46 @@ if(isset($_POST["cari"])) {
 <html>
 <head>
     <title>Halaman Admin</title>
+    <style>
+        .loader {
+            width: 100px;
+            position: absolute;
+            top: 118px:
+            left: 210px;
+            display: none;
+        }
+
+        @media print {
+        /* Sembunyikan elemen dengan class no-print atau aksi saat diprint */
+        .no-print, .aksi, form, a[href="logout.php"], a[href="tambah.php"] {
+            display: none !important;
+        }
+    }
+    </style>
+
     <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
     <script src="js/script.js"></script>
 </head>
 <body>
 
-<a href="logout.php">Logout</a>
+<a href="logout.php" class="no-print">Logout</a>
 
 <h1>Daftar Mahasiswa</h1>
 
-<a href="tambah.php">Tambah data mahasiswa</a>
+<a href="tambah.php" class="no-print">Tambah data mahasiswa</a>
 <br><br>
 
-<form action="" method="post">
+<form action="" method="post" class="no-print">
     <input type="text" name="keyword" size="40" autofocus placeholder="masukkan keyword pencarian" autocomplete="off" id="keyword">
     <button type="submit" name="cari" id="tombol-cari">Cari</button>
-
-    <!-- Gambar loader yang sudah dikecilkan dan disesuaikan posisinya -->
     <img src="img/loader.gif" class="loader" style="width: 20px; vertical-align: middle; display: none;">
 </form>
 
-<br>
-<div id="container">
 <table border="1" cellpadding="10" cellspacing="0">
+    
     <tr>
         <th>No.</th>
-        <th>Aksi</th>
+        <th class="aksi">Aksi</th> <!-- Tambah class aksi -->
         <th>Gambar</th>
         <th>NIM</th>
         <th>Nama</th>
@@ -55,7 +69,7 @@ if(isset($_POST["cari"])) {
     <?php foreach( $mahasiswa as $row ) : ?>
     <tr>
         <td><?= $i; ?></td>
-        <td>
+        <td class="aksi"> <!-- Tambah class aksi -->
             <a href="ubah.php?id=<?= $row["id"]; ?>">ubah</a> |
             <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin?');">hapus</a>
         </td>
