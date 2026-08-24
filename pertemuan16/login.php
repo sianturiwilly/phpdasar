@@ -1,12 +1,11 @@
 <?php
 session_start();
+require_once 'functions.php';
 
 if(isset($_SESSION["login"])) {
     header("Location: index.php");
     exit;
 }
-
-require 'functions.php';
 
 if(isset($_POST["login"])) {
 
@@ -52,11 +51,11 @@ if(isset($_POST["login"])) {
     <ul>
         <li>
             <label for="username">Username :</label>
-            <input type="text" name="username" id="username">
+            <input type="text" name="username" id="username" required>
         </li>
         <li>
             <label for="password">Password :</label>
-            <input type="password" name="password" id="password">
+            <input type="password" name="password" id="password" required>
         </li>
         <li>
             <button type="submit" name="login">Login</button>

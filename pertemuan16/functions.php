@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Koneksi ke database
 $conn = mysqli_connect("localhost", "root", "", "phpdasar");
 
@@ -22,7 +22,6 @@ function tambah($data) {
     $email = htmlspecialchars($data["email"]);
     $jurusan = htmlspecialchars($data["jurusan"]);
     
-
     // Upload gambar
     $gambar = upload();
     if(!$gambar) {
@@ -36,20 +35,19 @@ function tambah($data) {
 }
 
 function upload() {
-
     $namaFile = $_FILES['gambar']['name'];
     $ukuranFile = $_FILES['gambar']['size'];
     $error = $_FILES['gambar']['error'];
     $tmpName = $_FILES['gambar']['tmp_name'];
 
-    // Cek apakah tidak ada gambar yang diupload.
+    // Cek apakah tidak ada gambar yang diupload
     if($error === 4) {
         echo "<script>alert('Pilih gambar terlebih dahulu!')</script>";
         return false;
     }
 
-    // Cek apakah yang diupload adalah gambar.
-    $ekstensiGambarValid = ['jpg', 'jpeg', 'png' ];
+    // Cek apakah yang diupload adalah gambar
+    $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
     $ekstensiGambar = explode('.', $namaFile);
     $ekstensiGambar = strtolower(end($ekstensiGambar));
     if(!in_array($ekstensiGambar, $ekstensiGambarValid)) {
@@ -57,18 +55,14 @@ function upload() {
         return false;
     }
 
-    // Cek jika ukuran filenya terlalu besar.
+    // Cek jika ukuran filenya terlalu besar
     if($ukuranFile > 1000000) {
-        echo "<script>alert('Ukuran gambarterlalu besar!')</script>";
+        echo "<script>alert('Ukuran gambar terlalu besar!')</script>";
         return false;
     }
 
-    // Lolos pengecekan, gambar siap upload.
-    // Generate nama gambar baru.
-    $namaFileBaru = uniqid();
-    $namaFileBaru .= '.';
-    $namaFileBaru .= $ekstensiGambar;
-
+    // Generate nama gambar baru
+    $namaFileBaru = uniqid() . '.' . $ekstensiGambar;
     move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
 
     return $namaFileBaru;
@@ -84,14 +78,23 @@ function ubah($data) {
     $jurusan = htmlspecialchars($data["jurusan"]);
     $gambarLama = htmlspecialchars($data["gambarLama"]);
 
-    // Cek apakah user pilih gambar baru atau tidak.
     if($_FILES['gambar']['error'] === 4) {
        $gambar = $gambarLama; 
     } else {
        $gambar = upload();
     }
 
-    $query = "UPDATE mahasiswa SET nim = '$nim', nama = '$nama', email = '$email', jurusan = '$jurusan', gambar = '$gambar'";
+    // Ditambahkan WHERE id = $id agar hanya 1 data yang terupdate
+    $query = "UPDATE mahasiswa SET 
+                nim = '$nim', 
+                nama = '$nama', 
+                email = '$email', 
+                jurusan = '$jurusan', 
+                gambar = '$gambar' 
+              WHERE id = $id";
+              
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
 }
 
 function hapus($id) {
@@ -102,7 +105,11 @@ function hapus($id) {
 
 function cari($keyword) {
     global $conn;
-    $query = "SELECT * FROM mahasiswa WHERE nama LIKE'%$keyword%' OR nim LIKE'%$keyword%' OR email LIKE'%$keyword%' OR jurusan LIKE'%$keyword%'";
+    $query = "SELECT * FROM mahasiswa WHERE 
+                nama LIKE '%$keyword%' OR 
+                nim LIKE '%$keyword%' OR 
+                email LIKE '%$keyword%' OR 
+                jurusan LIKE '%$keyword%'";
     return query($query);
 }
 
@@ -113,7 +120,7 @@ function registrasi($data) {
     $password = mysqli_real_escape_string($conn, $data["password"]);
     $password2 = mysqli_real_escape_string($conn, $data["password2"]);
 
-    // Cek username sudah ada atau belum.
+    // Cek username sudah ada atau belum
     $result = mysqli_query($conn, "SELECT username FROM user WHERE username = '$username'");
     if(mysqli_fetch_assoc($result)) {
         echo "<script>alert('Username sudah terdaftar.');</script>";
@@ -129,7 +136,7 @@ function registrasi($data) {
     // Enkripsi password
     $password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Tambahkan user beru ke database.
+    // Tambahkan user baru ke database
     mysqli_query($conn, "INSERT INTO user VALUES('', '$username', '$password')");
 
     return mysqli_affected_rows($conn);
