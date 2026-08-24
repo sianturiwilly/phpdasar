@@ -1,9 +1,18 @@
 <?php
 session_start();
+require 'functions.php';
 
 // Cek cookie
-if(isset($_COOKIE['login'])) {
-    if($_COOKIE['login'] == 'true') {
+if(isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
+    $id = $_COOKIE['id'];
+    $key = $_COOKIE['key'];
+
+    // Ambil username berdasarkan id.
+    $result = mysqli_query($conn, "SELECT username FROM user WHERE id = '$id'");
+    $row = mysqli_fetch_assoc($result);
+
+    // Cek cookie dan username.
+    if($key === hash('sha256', $row['username'])) {
         $_SESSION['login'] = true;
     }
 }
@@ -12,8 +21,6 @@ if(isset($_SESSION["login"])) {
     header("Location: index.php");
     exit;
 }
-
-require_once 'functions.php';
 
 if(isset($_POST["login"])) {
 
@@ -34,7 +41,8 @@ if(isset($_POST["login"])) {
             // Cek remember me.
             if(isset($_POST['remember'])) {
                 // Buat cookie.
-                setcookie('login', 'true', time() + 60);
+                setcookie('id', $row['id'], time()+60);
+                setcookie('key', hash('sha256'), $row['username'], time()+60);
             }
 
             header("Location: index.php");
