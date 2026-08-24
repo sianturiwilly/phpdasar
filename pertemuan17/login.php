@@ -1,11 +1,19 @@
 <?php
 session_start();
-require_once 'functions.php';
+
+// Cek cookie
+if(isset($_COOKIE['login'])) {
+    if($_COOKIE['login'] == 'true') {
+        $_SESSION['login'] = true;
+    }
+}
 
 if(isset($_SESSION["login"])) {
     header("Location: index.php");
     exit;
 }
+
+require_once 'functions.php';
 
 if(isset($_POST["login"])) {
 
@@ -22,6 +30,12 @@ if(isset($_POST["login"])) {
         if(password_verify($password, $row["password"])) {
             // Set session
             $_SESSION["login"] = true;
+
+            // Cek remember me.
+            if(isset($_POST['remember'])) {
+                // Buat cookie.
+                setcookie('login', 'true', time() + 60);
+            }
 
             header("Location: index.php");
             exit;
@@ -56,6 +70,10 @@ if(isset($_POST["login"])) {
         <li>
             <label for="password">Password :</label>
             <input type="password" name="password" id="password">
+        </li>
+        <li>
+            <input type="checkbox" name="remember" id="remember">
+            <label for="remember">Remember me</label>
         </li>
         <li>
             <button type="submit" name="login">Login</button>

@@ -1,5 +1,5 @@
 <?php 
 // Membuat cookie
-setcookie('nama', 'Willy');
+setcookie('nama', 'Willy', time()+60);
 
 ?>
